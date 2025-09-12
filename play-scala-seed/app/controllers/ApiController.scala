@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.libs.json.Json
-import play.api.mvc.{AbstractController, ControllerComponents}
+import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Result}
 import repositories.DataRepository
 
 import javax.inject.{Inject, Singleton}
@@ -12,17 +12,21 @@ class ApiController @Inject()(cc: ControllerComponents,
                              )
   extends AbstractController(cc) {
 
-  def ping = Action { implicit request =>
+  def ping = Action { 
     Ok("Hello, Scala!")
   }
 
-  def getPost(postId: Int) = Action { implicit request =>
-    dataRepository.getPost(postId) map { post =>
-      Ok(Json.toJson(post))
-    } getOrElse NotFound
+//  def getPost(postId: Int) = Action {
+//    dataRepository.getPost(postId) map { post =>
+//      Ok(Json.toJson(post))
+//    } getOrElse NotFound
+//  }
+  
+  def getPost(postId: Int) = Action {
+    dataRepository.getPost(postId).fold[Result](NotFound)(post => Ok(Json.toJson(post)))
   }
 
-  def getComments(postId: Int) = Action { implicit request =>
+  def getComments(postId: Int): Action[AnyContent] = Action {
     Ok(Json.toJson(dataRepository.getComments(postId)))
   }
 }

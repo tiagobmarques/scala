@@ -7,10 +7,12 @@ class SuiteTestSpec extends AnyFunSuite {
 //  val twoSum = new TwoSum
 //  val addTwoNumbers = new AddTwoNumbers
 //
-//  test("Case 1 Soma") {
-//    val result = twoSum.twoSum(Array(2, 7, 11, 15), 9)
-//    assert(result.sameElements(Array(0, 1)))
-//  }
+  test("Testando Fold") {
+    val palavras = List("Hello", "World", "Scala")
+    val str = palavras.fold("")(_ + "," + _)
+    println(str)
+    //    assert(resultado.equals(resultado))
+  }
 //
 //  test("Case 2 Soma") {
 //    val result = twoSum.twoSum(Array(3,2,4), 6)
