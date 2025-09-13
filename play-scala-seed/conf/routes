@@ -1,3 +1,7 @@
-GET     /api/ping              controllers.ApiController.ping
-GET     /api/posts/:postId     controllers.ApiController.getPost(postId: Int)
-GET     /api/posts/:postId/comments   controllers.ApiController.getComments(postId: Int)
+# Post Controller
+GET     /api/posts/ping        controllers.PostController.ping
+GET     /api/posts/:postId     controllers.PostController.getPost(postId: Int)
+
+# Comment Controller  
+GET     /api/comments/ping     controllers.CommentController.ping
+GET     /api/posts/:postId/comments   controllers.CommentController.getComments(postId: Int)
